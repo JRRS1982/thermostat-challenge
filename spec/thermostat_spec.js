@@ -16,7 +16,7 @@ describe("Thermostat", function() {
       expect(thermostat.MINTEMP).toBe(10)
     });
     it("Has a default psm which is on/true", function() {
-      expect(thermostat.psm).toBe(true)
+      expect(thermostat.psm).toBe('on')
     });
   });
 
@@ -26,7 +26,7 @@ describe("Thermostat", function() {
       expect(thermostat.temperature).toBe(21)
     });
     it("does not raise temp above 25 when psm is on", function () {
-      expect(thermostat.psm).toBe(true);
+      expect(thermostat.psm).toBe('on');
       for (var i = 0; i < 5; i++)
         thermostat.up();
       expect(thermostat.temperature).toBe(25);
@@ -35,7 +35,7 @@ describe("Thermostat", function() {
     });
     it("does not raise temp above 32 when psm is off", function () {
       thermostat.psmSwitch();
-      expect(thermostat.psm).toBe(false);
+      expect(thermostat.psm).toBe('off');
       for (var i = 0; i < 12; i++)
         thermostat.up();
       expect(thermostat.temperature).toBe(32);
@@ -61,7 +61,7 @@ describe("Thermostat", function() {
   describe(".psmSwitch", function() {
     it("changes the state of the psm", function() {
       thermostat.psmSwitch();
-      expect(thermostat.psm).toBe(false);
+      expect(thermostat.psm).toBe('off');
     });
   });
 

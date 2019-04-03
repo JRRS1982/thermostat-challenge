@@ -3,14 +3,14 @@
 function Thermostat () {
   this.temperature = 20;
   this.MINTEMP = 10;
-  this.psm = true;
+  this.psm = 'on';
 };
 
 Thermostat.prototype.up = function() {
-  if (this.temperature === 25 && this.psm === true) {
+  if (this.temperature === 25 && this.psm === 'on') {
     this.temperature = 25;
     return "Maximum temperature reached";
-  } else if (this.temperature === 32 && this.psm === false) {
+  } else if (this.temperature === 32 && this.psm === 'off') {
     this.temperature = 32;
     return "Maximum temperature reached";
   } else {
@@ -28,10 +28,13 @@ Thermostat.prototype.down = function () {
 };
 
 Thermostat.prototype.psmSwitch = function () {
-  if (this.psm === true) {
-    this.psm = false
+  if (this.psm === 'on') {
+    this.psm = 'off'
   } else {
-    this.psm = true 
+    this.psm = 'on'
+    if (this.temperature > 25) {
+      this.temperature = 25;
+    }; 
   }
 };
 
