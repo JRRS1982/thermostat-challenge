@@ -38,3 +38,13 @@ Thermostat.prototype.psmSwitch = function () {
 Thermostat.prototype.reset = function () {
   this.temperature = 20
 }
+
+Thermostat.prototype.usage = function () {
+  if (this.temperature >= 18 && this.temperature < 25) {
+    return 'medium-usage'
+  } else if (this.temperature >= 25) {
+    return 'high-usage'
+  } else {
+  return 'low-usage'
+  }
+}

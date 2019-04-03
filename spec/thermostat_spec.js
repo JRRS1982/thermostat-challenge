@@ -73,4 +73,24 @@ describe("Thermostat", function() {
     expect(thermostat.temperature).toBe(20)
     });
   });
+
+  describe(".usage", function () {
+    it("returns low-usage when temp is less than 18", function () {
+      for (var i = 0; i < 3; i++)
+        thermostat.down();
+      expect(thermostat.temperature).toBe(17)
+      expect(thermostat.usage()).toBe('low-usage')
+    });
+    it("returns medium-usage when temp is 19 - 24", function () {
+      expect(thermostat.temperature).toBe(20)
+      expect(thermostat.usage()).toBe('medium-usage')
+    });
+    it("returns high-usage when temp is greater than 24", function () {
+      for (var i = 0; i < 5; i++)
+        thermostat.up();
+      expect(thermostat.temperature).toBe(25)
+      expect(thermostat.usage()).toBe('high-usage')
+    });
+  });
+
 });
